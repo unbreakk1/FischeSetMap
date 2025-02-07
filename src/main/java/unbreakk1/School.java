@@ -1,22 +1,24 @@
 package unbreakk1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class School
 {
-    private List<Student> students;
+    private Map<String, Student> students;
 
     public School()
     {
-        students = new ArrayList<>();
+        students = new HashMap<>();
     }
 
-    public void addStudent(Student student)
-    {
+    public void addStudent(Student student) {
         if (student != null)
         {
-            students.add(student);
+            // Add student with their ID as the key
+            students.put(student.getId(), student);
             System.out.println(student.getFirstName() + " " + student.getLastName() + " has been added to the school.");
         } else
         {
@@ -24,15 +26,15 @@ public class School
         }
     }
 
-
     public void printAllStudents()
     {
         if (students.isEmpty())
             System.out.println("No students in the school.");
-         else
+        else
         {
             System.out.println("List of students in the school:");
-            for (Student student : students)
+            // Iterate over the values of the map to print students
+            for (Student student : students.values())
             {
                 System.out.println(student);
             }
@@ -41,22 +43,23 @@ public class School
 
     public Student findStudentById(String id)
     {
-        for (Student student : students)
+        // Find the student directly using their ID
+        Student student = students.get(id);
+        if (student != null)
+            return student;
+         else
         {
-            if (student.getId().equals(id))
-                return student;
-
+            System.out.println("Student with ID: " + id + " not found.");
+            return null;
         }
-        System.out.println("Student with ID: " + id + " not found.");
-        return null;
     }
 
     public boolean removeStudentById(String id)
     {
-        Student studentToRemove = findStudentById(id);
-        if (studentToRemove != null)
+        // Remove the student by ID and check if removal was successful
+        Student removedStudent = students.remove(id);
+        if (removedStudent != null)
         {
-            students.remove(studentToRemove);
             System.out.println("Student with ID: " + id + " has been removed from the school.");
             return true;
         } else
@@ -68,13 +71,15 @@ public class School
 
     public List<Course> getStudentCoursesById(String studentId)
     {
+        // Retrieve student directly from the map
         Student student = findStudentById(studentId);
         if (student != null)
-            return student.getCourses();
+             return student.getCourses();
          else
-         {
+        {
             System.out.println("Cannot retrieve courses. Student with ID " + studentId + " does not exist.");
-            return new ArrayList<>(); // Return an empty list if student is not found
+            return List.of(); // Return an empty list if the student is not found
         }
     }
+
 }
