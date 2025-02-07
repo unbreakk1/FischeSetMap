@@ -114,12 +114,13 @@ public class Student
         Student student = (Student) o;
         return Objects.equals(firstName, student.firstName) &&
                 Objects.equals(lastName, student.lastName) &&
-                Objects.equals(id, student.id);
+                Objects.equals(id, student.id) &&
+                Objects.equals(courses, student.courses);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, id);
+        return Objects.hash(firstName, lastName, id, courses);
     }
     //</editor-fold>
 
