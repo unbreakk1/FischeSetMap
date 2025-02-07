@@ -63,13 +63,15 @@ public class Student
         }
     }
 
+
+
+    //<editor-fold desc="Getter & Setter">
     // Getter for the courses map
     public Map<String, Course> getCourses()
     {
         return courses;
     }
 
-    //<editor-fold desc="Getter & Setter">
     public String getFirstName()
     {
         return firstName;
