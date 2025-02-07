@@ -1,8 +1,6 @@
-package unbreakk1;
+package unbreakk1.ListToMapConversion;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class School
@@ -69,17 +67,19 @@ public class School
         }
     }
 
-    public List<Course> getStudentCoursesById(String studentId)
+    public Map<String, Course> getStudentCoursesById(String studentId)
     {
-        // Retrieve student directly from the map
         Student student = findStudentById(studentId);
+
         if (student != null)
-             return student.getCourses();
-         else
+            // Return the courses map directly
+            return student.getCourses();
+        else
         {
             System.out.println("Cannot retrieve courses. Student with ID " + studentId + " does not exist.");
-            return List.of(); // Return an empty list if the student is not found
+            return new HashMap<>(); // Return an empty map if the student is not found
         }
     }
+
 
 }
