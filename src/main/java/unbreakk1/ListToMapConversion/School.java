@@ -12,7 +12,8 @@ public class School
         students = new HashMap<>();
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(Student student)
+    {
         if (student != null)
         {
             // Add student with their ID as the key
